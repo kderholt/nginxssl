@@ -1,2 +1,2 @@
 #!/bin/sh
-certbot renew >> /var/log/TEST 2>&1
+certbot renew >> /var/log/certRenewOutput 2>&1
