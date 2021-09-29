@@ -6,7 +6,7 @@ my $domains = $ENV{'domains'};
 my $email = $ENV{'email'};
 chomp($domains);
 my @split;
-
+`cp /config/letsencrypt.conf /etc/letsencrypt/letsencrypt.conf`;
 &splitDomain($domains);
 &editConfig();
 
@@ -26,9 +26,9 @@ sub editConfig {
 	`sed -i "s|URL|$dom|g" /etc/nginx/sites/$dom.conf`;
 	`sed -i "s|FOLDER|$split[0]|g" /etc/nginx/sites/$dom.conf`;
 	}
-	print "will add domains: $domains";
+	print "will add domains: $domains\n";
         print "email: $email";
-	`sed -i "s|URL|$domains|g" /config/letsencrypt.conf`;
-	`sed -i "s|EMAIL|$email|g" /config/letsencrypt.conf`;
+	`sed -i "s|URL|$domains|g" /etc/letsencrypt/letsencrypt.conf`;
+	`sed -i "s|EMAIL|$email|g" /etc/letsencrypt/letsencrypt.conf`;
 
 }
