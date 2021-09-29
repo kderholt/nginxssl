@@ -17,15 +17,15 @@ services:
        - "renewvolume:/srv/webroot"
      restart: always
 
-   cron:
-     image: certbot-cron
-     volumes:
-       - "nginx-ssl-prod:/etc/letsencrypt"
-       - "renewvolume:/srv/webroot"
-     restart: always
-     depends_on: 
-       - "nginx"
-
+#   cron:
+#     image: certbot-cron
+#     volumes:
+#       - "nginx-ssl-prod:/etc/letsencrypt"
+#       - "renewvolume:/srv/webroot"
+#     restart: always
+#     depends_on: 
+#       - "nginx"
+#
 
 
 
