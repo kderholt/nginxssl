@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+   nginx:
+     image: nginxssl
+     environment:
+         domains: "gemini.nmym.no"
+         email: "kjetil@ridderholt.no"
+         production: 1
+     ports:
+       - "80:80"
+       - "443:443"
+     volumes:
+       - "nginx-ssl-prod:/etc/letsencrypt"
+       - "nginx-sites-prod:/etc/nginx/conf.d"
+       - "nginx-www-prod:/var/www"
+       - "renewvolume:/srv/webroot"
+     restart: always
+
+   cron:
+     image: certbot-cron
+     volumes:
+       - "nginx-ssl-prod:/etc/letsencrypt"
+       - "renewvolume:/srv/webroot"
+     restart: always
+     depends_on: 
+       - "nginx"
+
+
+
+
+volumes:
+   renewvolume:
+   nginx-ssl-prod:
+    external: true
+   nginx-sites-prod:
+    external: true
+   nginx-www-prod:
+    external: true
