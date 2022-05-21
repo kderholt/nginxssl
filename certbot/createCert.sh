@@ -21,4 +21,5 @@ false | cp -i /etc/nginx/sites/*.conf /etc/nginx/conf.d/ 2>/dev/null
 #cp -n /etc/nginx/sites/*.conf /etc/nginx/conf.d/
 mkdir /var/lock/CREATE
 fi
+certbot renew >> /var/log/certRenewOutput 2>&1
 exit 0
