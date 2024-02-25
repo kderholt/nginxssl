@@ -9,6 +9,8 @@ RUN mkdir /etc/nginx/sites/
 RUN apk add bash
 RUN apk add certbot
 RUN apk add perl
+RUN apk add build-base libffi-dev openssl-dev py-pip
+RUN pip install cryptography==38.0.3
 
 RUN mv /tmp/templates/default.conf /etc/nginx/conf.d/default.conf
 RUN mv /tmp/templates/template.conf /config/nginxtemplate.conf
